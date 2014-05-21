@@ -11,8 +11,8 @@ require_once('autoload.php');
 if (isset($_REQUEST['security_token']) && $_REQUEST['security_token'] === 'gatekeeper404') {
     $firstName = $_REQUEST['firstName'];
     $lastName = $_REQUEST['lastName'];
-    $buyerName = $firstName . " " . $lastName;
-    $buyerEmail = $_REQUEST['buyerEmail'];
+    $sellerName = $firstName . " " . $lastName;
+    $sellerEmail = $_REQUEST['email'];
     $price = $_REQUEST['price'];
     $street = $_REQUEST['street'];
     $city = $_REQUEST['city'];
@@ -26,10 +26,10 @@ if (isset($_REQUEST['security_token']) && $_REQUEST['security_token'] === 'gatek
     $request->setTemplateId(TEMPLATE_RRU_FRONTEND_CONTRACT_ID);
     $request->setSubject('RRU Front End Contract');
     $request->setMessage("Please review the easy to understand contract and sign digitally. It's pretty easy to do, but if you have any questions, feel free to contact me. \n \nTracy Caywood \n \n(904) 419-7325 CALL OR TEXT \ntracycaywood@gmail.com");
-    $request->setSigner('Buyer', $buyerEmail, $buyerName);
-    $request->setSigner('Seller', SELLER_EMAIL, SELLER_NAME);
-    $request->setCustomFieldValue("Seller's Name", SELLER_NAME);
-    $request->setCustomFieldValue("Buyer's Name", $buyerName);
+    $request->setSigner('Seller', $sellerEmail, $sellerName);
+    $request->setSigner('Buyer', BUYER_EMAIL, BUYER_NAME);
+    $request->setCustomFieldValue("Buyer's Name", BUYER_NAME);
+    $request->setCustomFieldValue("Seller's Name", $sellerName);
     $request->setCustomFieldValue("Purchase Price $", $price);
     $request->setCustomFieldValue("Complete Property Address", $address);
     $request->setCustomFieldValue("Additional Terms", 'Terms Terms Terms Testing Testing API');
