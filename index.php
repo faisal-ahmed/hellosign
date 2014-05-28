@@ -56,7 +56,7 @@ if (isset($_REQUEST['security_token']) && $_REQUEST['security_token'] === 'gatek
     $client = new HelloSign\Client(API_KEY);
     $request = new HelloSign\TemplateSignatureRequest;
 
-    $request->enableTestMode();
+    //$request->enableTestMode();
     $request->setTemplateId(TEMPLATE_ALL_CASH_CONTRACT_ID);
     $request->setSubject("All Cash Contract - $address");
     $request->setMessage("Please review our simple all cash contract and sign where indicated. If you have any questions, please contact me. \n \nTime is of the essence. \n \nThank You.");
@@ -75,27 +75,6 @@ if (isset($_REQUEST['security_token']) && $_REQUEST['security_token'] === 'gatek
     $request->setCustomFieldValue("Additional Terms 3", $term3);
     $request->setCustomFieldValue("Seller's Phone", $seller_phone);
     $request->setCustomFieldValue("Seller's Email", $sellerEmail);
-
-    //$response = $client->sendTemplateSignatureRequest($request);
-
-    //debug($response);
-
-    /*$request->enableTestMode();
-    $request->setTemplateId(TEMPLATE_RRU_FRONTEND_CONTRACT_ID);
-    $request->setSubject('RRU Front End Contract');
-    $request->setMessage("Please review the easy to understand contract and sign digitally. It's pretty easy to do, but if you have any questions, feel free to contact me. \n \nTracy Caywood \n \n(904) 419-7325 CALL OR TEXT \ntracycaywood@gmail.com");
-    $request->setSigner('Seller', $sellerEmail, $name);
-    $request->setSigner('Buyer', $sellerEmail, BUYER_NAME);
-    $request->setCustomFieldValue("Buyer's Name", BUYER_NAME);
-    $request->setCustomFieldValue("Seller's Name", $name);
-    $request->setCustomFieldValue("Purchase Price $", '454');
-    $request->setCustomFieldValue("Complete Property Address", $address);
-    $request->setCustomFieldValue("Additional Terms", 'Terms Terms Terms Testing Testing API');*/
-
-    /*$templates = $client->getTemplates(1);
-    foreach ($templates as $template) {
-        debug($template);
-    }*/
 
     $response = $client->sendTemplateSignatureRequest($request);
 
